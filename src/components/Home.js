@@ -4,7 +4,8 @@ import React, {useState, useEffect} from 'react';
 import {POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL} from '../config';
 
 //Components
-
+import HeroImage from "../components/HeroImage/HeroImage";
+import Grid from "../components/Grid/Grid";
 
 //Hooks
 import {useHomeFetch} from "../hooks/useHomeFetch";
@@ -19,7 +20,22 @@ function Home() {
     console.log(state);
 
     return (
-        <div>Home Page</div>
+        <div>
+            {state.results[0] ? 
+                <HeroImage 
+                    image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
+                    title={state.results[0].original_title}
+                    text={state.results[0].overview}
+                />
+            : null}
+                <Grid header='Popular Movies'>
+                    {state.results.map((movie => (
+                        <div key={movie.id}>
+                            {movie.title}
+                        </div>
+                    )))}
+                </Grid>
+        </div>
     );
 }
 
