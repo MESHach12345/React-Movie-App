@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 //Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
@@ -7,6 +7,8 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
 import HeroImage from "../components/HeroImage/HeroImage";
 import Grid from "../components/Grid/Grid";
 import Thumb from "../components/Thumb/Thumb";
+import Spinner from "../components/Spinner/Spinner";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 //Hooks
 import { useHomeFetch } from "../hooks/useHomeFetch";
@@ -15,7 +17,7 @@ import { useHomeFetch } from "../hooks/useHomeFetch";
 import NoImage from "../images/no_image.jpg";
 
 function Home() {
-  const { state, loading, error } = useHomeFetch();
+  const { state, loading, error, setSearchTerm} = useHomeFetch();
 
   console.log(state);
 
@@ -27,7 +29,8 @@ function Home() {
           title={state.results[0].original_title}
           text={state.results[0].overview}
         />
-      ) : null}
+      ) : <Spinner />}
+      <SearchBar setSearchTerm={setSearchTerm}/>
       <Grid header="Popular Movies">
         {state.results.map((movie) => (
           <Thumb

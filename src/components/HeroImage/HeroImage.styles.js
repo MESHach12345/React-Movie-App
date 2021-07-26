@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
   background-size: 100%, cover;
   background-position: center;
-  height: 450px;
+  height: 550px;
   position: relative;
   animation: animateHeroImage 1s;
   padding: 0 40px;
