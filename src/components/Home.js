@@ -23,7 +23,9 @@ function Home() {
 
   console.log(state);
 
-  if (error) return <div>Something went wrong</div>;
+  if (error) return (
+    <div>Something went wrong</div>
+  );
 
   return (
     <div>
